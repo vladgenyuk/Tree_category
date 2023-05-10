@@ -1,0 +1,37 @@
+<section style="width: 40%; margin: 0px; float: right; background-color: #a3a3a3;">
+    <ul id="level2"></ul>
+</section>
+<section style="width: 60%; margin: 0px; float: left; background-color: #a3a3a3;">
+    <ul>
+        {% for cat in cats %}
+            {% if cat.parent.title == category %}
+                <a href="#"><li id="category" onclick="changeCat({{ cat.id }})">{{ cat.title }}</li></a>
+            {% endif %}
+        {% endfor %}
+    </ul>
+</section>
+
+<script>
+        let counter = 0;
+        my_list = document.getElementById('level2');
+
+        function changeCat(cat){
+            my_list.innerHTML = "";
+            let note;
+            let msg;
+            {% for i in cats %}
+                if({{ i.parent.id }} == cat){
+                    list_item = document.createElement('li');
+                    note = document.createElement('a');
+                    note.setAttribute('href', "{{ i.get_url }}" + "{{ i.id }}");
+                    msg = document.createTextNode('{{ i.title }}');
+                    note.appendChild(msg);
+                    list_item.appendChild(note);
+                    my_list.appendChild(list_item);
+                }
+            {% endfor %}
+            if(!my_list.innerHTML){
+                my_list.innerHTML = "Coming soon";
+            }
+        }
+</script>

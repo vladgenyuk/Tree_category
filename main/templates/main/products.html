@@ -1,0 +1,21 @@
+{% extends 'main/base.html' %}
+{% load static %}
+
+{% block link %}
+{% endblock %}
+
+{% block content %}
+<h1>Product List ({{ category }})</h1>
+    <ul>
+        {% for p in products %}
+            <div class="pdiv">
+                <img style="object-fit: fill; width: 120px; height: 150px;" src="{% static 'main/images/fiasko.jpg' %}"/>
+
+                <li class="product"><h4>{{ p.title }}</h4></li>
+                <li class="product">{{ p.cost }}</li>
+                <li class="product">{{ p.created_at }}</li>
+                <h5 class="product"><---- Placeholder для примера</h5>
+            </div>
+        {% endfor %}
+    </ul>
+{% endblock %}

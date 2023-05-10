@@ -1,0 +1,16 @@
+{% extends 'main/base.html' %}
+
+{% block title %}Home page{% endblock %}
+
+{% block content %}
+<a href="{% url 'create_10' %}">CREATE 1 OF ALL!!</a>
+<h1 class="right"><a href="{% url 'about' %}">ABOUT</a></h1>
+<ul>
+    {% for cat in cats_main %}
+        <a href="{% url 'categories' cat.title %} "><li>{{ cat }}</li></a>
+    {% endfor %}
+</ul>
+
+
+
+{% endblock %}
